@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:latest
+    restart: always
+    container_name: db_deribit
+    environment:
+      POSTGRES_USER: deribit
+      POSTGRES_PASSWORD: deribit
+      POSTGRES_DB: deribit
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8890:8080"
+volumes:
+  db_data:
+
+
+
+
+
+
+
